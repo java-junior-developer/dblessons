@@ -17,5 +17,13 @@
         <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.4</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
 
 </project>

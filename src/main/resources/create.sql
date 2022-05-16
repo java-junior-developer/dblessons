@@ -16,27 +16,6 @@ CREATE TABLE IF NOT EXISTS article(
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
-CREATE TABLE IF NOT EXISTS nomination(
-   nomination_id serial PRIMARY KEY,
-   name VARCHAR (150) NOT NULL
-);
-
-CREATE TYPE rate AS ENUM ('first', 'second', 'third');
-
-CREATE TABLE IF NOT EXISTS nomination_article
-(
-  nomination_id integer NOT NULL,
-  article_id integer NOT NULL,
-  rating rate,
-  PRIMARY KEY (nomination_id, article_id),
-  CONSTRAINT nomination_fk FOREIGN KEY (nomination_id)
-      REFERENCES nomination (nomination_id) MATCH FULL
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT article_fk FOREIGN KEY (article_id)
-      REFERENCES article (article_id) MATCH FULL
-      ON UPDATE NO ACTION ON DELETE NO ACTION
-);
-
 -- ВСТАВКА ДАННЫХ В ТАБЛИЦУ
 INSERT INTO author (name, age)
 VALUES
@@ -55,16 +34,3 @@ VALUES
 ('Hibernate', 'Статья про Hibernate', '2018-12-01 21:30', 2),
 ('Collections API', 'Collections API', '2019-11-22 22:29', 3);
 
-INSERT INTO nomination (name)
-VALUES
-('Java 8'),
-('Базы Данных'),
-('Функциональное Программирование Java');
-
-INSERT INTO nomination_article (nomination_id, article_id, rating)
-VALUES
-(1, 2, 'first'),
-(1, 1, 'third'),
-(2, 5, 'third'),
-(3, 2, 'first'),
-(3, 6, 'third');

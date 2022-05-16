@@ -1,4 +1,7 @@
 -- все записи
+-- SELECT имя_столбца1, имя_столбца2
+-- FROM имя_таблицы
+-- WHERE ;
 SELECT * FROM author;
 
 -- названия статей по возрастанию дат
@@ -9,7 +12,7 @@ FROM article ORDER BY created_on;
 
 -- = < > <= >= !=
 SELECT * FROM article
-WHERE author_id = 2;
+WHERE author_id >= 2;
 
 -- BETWEEN ... AND ... диапазон
 SELECT title, created_on FROM article
@@ -23,7 +26,8 @@ AND created_on > '2018-12-12';
 
 -- IN(value1, value2, value3)
 SELECT * FROM article
-WHERE author_id IN(2, 3, 12);
+WHERE author_id IN(2, 3, 12); -- OR
+
 -- NOT IN(value1, value2, value3)
 SELECT * FROM article
 WHERE author_id NOT IN(2, 1, 3);

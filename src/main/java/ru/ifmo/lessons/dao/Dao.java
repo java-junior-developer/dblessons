@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Dao<T, PK> {
     // добавление данных в таблицу
-    void add(T t);
+    T add(T t);
     // обновление данных в таблице
     void update(T t);
     // удаление данных по первичному ключу из таблицы

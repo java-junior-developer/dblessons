@@ -37,7 +37,7 @@
             <scope>runtime</scope>
         </dependency>
 
-
+        <!-- пул соединений с сервером БД -->
         <dependency>
             <groupId>com.mchange</groupId>
             <artifactId>c3p0</artifactId>

@@ -7,17 +7,21 @@
 
     <persistence-unit name="ormLesson" transaction-type="RESOURCE_LOCAL">
 
-        <properties>
+        <class>ru.ifmo.lessons.jpa.entity.Author</class>
 
+        <properties>
+            <!--название бд-->
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/lessons"/>
             <!--логин пользователя бд-->
-            <property name="jakarta.persistence.jdbc.user" value="java"/>
+            <property name="jakarta.persistence.jdbc.user" value="postgres"/>
             <!-- пароль пользователя бд-->
-            <property name="jakarta.persistence.jdbc.password" value="java"/>
+            <property name="jakarta.persistence.jdbc.password" value="123"/>
             <!--используемый драйвер-->
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 
             <property name="eclipselink.logging.level" value="FINE"/>
+            <!-- при каждом запуске таблицы будут удаляться и создаваться заново (drop-and-create)
+                 create, drop, drop-and-create, none -->
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
 
             <property name="eclipselink.connection-pool.default.initial" value="5"/>

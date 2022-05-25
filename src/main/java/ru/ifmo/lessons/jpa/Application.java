@@ -3,6 +3,8 @@ package ru.ifmo.lessons.jpa;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import ru.ifmo.lessons.jpa.dao.JpaAuthorDao;
+import ru.ifmo.lessons.jpa.entity.Article;
 import ru.ifmo.lessons.jpa.entity.Author;
 
 public class Application {
@@ -49,6 +51,7 @@ public class Application {
         manager.getTransaction().commit();
 
         authorFromDb = manager.find(Author.class, 1);
+
         System.out.println("---authorFromDb---" + authorFromDb);
 
         // удаление информации из таблицы
@@ -58,8 +61,32 @@ public class Application {
 
 
 
+        Author paul = new Author();
+        paul.setName("Paul");
+        paul.setAge(32);
 
+        Article article = new Article();
+        article.setTitle("Java");
+        article.setText("Java text");
 
+        // в классе Author можно создать метод
+        // void addArticle(Article article) {
+        //    можно добавить проверки
+        //    article.setAuthor(this);
+        //    articles.add(article);
+        // }
+        paul.getArticles().add(article);
+        article.setAuthor(paul);
+        // и вызвать его вместо 2 предыдущих инструкций
+        // paul.addArticle(article);
 
+        manager.getTransaction().begin();
+        manager.persist(paul);
+        manager.getTransaction().commit();
+
+        JpaAuthorDao dao = new JpaAuthorDao(manager);
+        System.out.println("AUTHORS: " + dao.getAll());
     }
+
+
 }
